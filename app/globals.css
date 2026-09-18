@@ -1,26 +1,392 @@
 @import "tailwindcss";
 
+/* ===== UNO Deck Design System ===== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* UNO Card Colors */
+  --uno-red: #E53935;
+  --uno-blue: #1E88E5;
+  --uno-green: #43A047;
+  --uno-yellow: #FDD835;
+
+  /* Section Block Colors (OLMO style) */
+  --block-purple: #7C4DFF;
+  --block-orange: #FF6D00;
+  --block-teal: #00BFA5;
+  --block-black: #1A1A1A;
+
+  /* Neutrals */
+  --cream: #FFF8E1;
+  --cream-dark: #F5EDDA;
+  --ink: #1A1A1A;
+  --ink-light: #3A3A3A;
+  --ink-muted: #6B6B6B;
+  --white: #FFFFFF;
+
+  /* Font */
+  --font-display: var(--font-outfit);
+  --font-body: var(--font-inter);
+
+  /* Spacing */
+  --section-gap: 0px;
+  --section-padding-y: 80px;
+  --section-padding-x: 24px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
+  --shadow-uno: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--cream);
+  --color-foreground: var(--ink);
+  --color-uno-red: var(--uno-red);
+  --color-uno-blue: var(--uno-blue);
+  --color-uno-green: var(--uno-green);
+  --color-uno-yellow: var(--uno-yellow);
+  --color-block-purple: var(--block-purple);
+  --color-block-orange: var(--block-orange);
+  --color-block-teal: var(--block-teal);
+  --color-block-black: var(--block-black);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-ink: var(--ink);
+  --color-ink-light: var(--ink-light);
+  --color-ink-muted: var(--ink-muted);
+  --font-display: var(--font-outfit);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== Typography ===== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ===== OLMO Section Blocks ===== */
+
+.section-block {
+  width: 100%;
+  padding: var(--section-padding-y) var(--section-padding-x);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-block--cream {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.section-block--purple {
+  background: var(--block-purple);
+  color: var(--white);
+}
+
+.section-block--orange {
+  background: var(--block-orange);
+  color: var(--white);
+}
+
+.section-block--teal {
+  background: var(--block-teal);
+  color: var(--white);
+}
+
+.section-block--black {
+  background: var(--block-black);
+  color: var(--white);
+}
+
+/* ===== UNO Card Styles ===== */
+
+.uno-card {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.uno-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.uno-card--red {
+  background: var(--uno-red);
+  color: var(--white);
+}
+
+.uno-card--blue {
+  background: var(--uno-blue);
+  color: var(--white);
+}
+
+.uno-card--green {
+  background: var(--uno-green);
+  color: var(--white);
+}
+
+.uno-card--yellow {
+  background: var(--uno-yellow);
+  color: var(--ink);
+}
+
+/* ===== Buttons ===== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary--light {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.btn-primary--purple {
+  background: var(--block-purple);
+  color: var(--white);
+}
+
+/* ===== Badge / Chip ===== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Doodle Pattern Background ===== */
+
+.doodle-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  z-index: 0;
+}
+
+/* ===== Phone Mockup ===== */
+
+.phone-mockup {
+  width: 260px;
+  height: 520px;
+  background: var(--ink);
+  border-radius: 40px;
+  padding: 12px;
+  box-shadow: var(--shadow-uno),
+              inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-mockup__screen {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-mockup__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: var(--ink);
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+
+/* ===== Animations ===== */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0.4); }
+  50% { box-shadow: 0 0 0 20px rgba(124, 77, 255, 0); }
+}
+
+@keyframes card-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* Respect reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Scrollbar ===== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Material Symbols ===== */
+
+.icon {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon--filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon--sm {
+  font-size: 18px;
+}
+
+.icon--lg {
+  font-size: 32px;
+}
+
+.icon--xl {
+  font-size: 48px;
+}
+
+/* ===== No Scrollbar ===== */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
