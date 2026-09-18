@@ -1,12 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ProfilPage() {
   const [soundOn, setSoundOn] = useState(true);
   const [notifOn, setNotifOn] = useState(true);
+  
+  const [stats, setStats] = useState({
+    dibuat: 0,
+    selesai: 0,
+    poin: 0,
+    streak: 0
+  });
 
   // Countdown to next birthday
   const now = new Date();
@@ -16,6 +24,41 @@ export default function ProfilPage() {
     0,
     Math.ceil((birthday.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
   );
+
+  useEffect(() => {
+    async function fetchData() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: targets } = await supabase
+        .from('targets')
+        .select('*')
+        .eq('user_id', user.id);
+
+      if (targets) {
+        let dibuat = targets.length;
+        let selesai = 0;
+        let poin = 0;
+
+        targets.forEach(t => {
+          if (t.status === 'selesai') {
+            selesai++;
+            poin += t.weight;
+          }
+        });
+
+        setStats({ dibuat, selesai, poin, streak: 0 });
+      }
+    }
+    fetchData();
+  }, []);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    window.location.href = "/login";
+  };
 
   return (
     <div className="space-y-6">
@@ -40,7 +83,7 @@ export default function ProfilPage() {
           animate={{ rotate: [0, -3, 3, 0] }}
           transition={{ duration: 5, repeat: Infinity }}
         >
-          👑
+          <span className="icon text-white" style={{ fontSize: '32px' }}>workspace_premium</span>
         </motion.div>
         <h2 className="font-display font-bold text-xl text-ink">Duwai</h2>
         <p className="font-body text-sm text-ink-muted">
@@ -57,7 +100,7 @@ export default function ProfilPage() {
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            {diffDays === 0 ? "🎂 HARI INI!" : `${diffDays} hari`}
+            {diffDays === 0 ? "HARI INI!" : `${diffDays} hari`}
           </motion.p>
         </div>
       </motion.div>
@@ -74,10 +117,10 @@ export default function ProfilPage() {
         </h3>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { label: "Kartu Dibuat", value: "8" },
-            { label: "Kartu Selesai", value: "3" },
-            { label: "Total Poin", value: "+8" },
-            { label: "Streak Terbaik", value: "2w" },
+            { label: "Kartu Dibuat", value: stats.dibuat },
+            { label: "Kartu Selesai", value: stats.selesai },
+            { label: "Total Poin", value: `+${stats.poin}` },
+            { label: "Streak Terbaik", value: `${stats.streak}w` },
           ].map((stat, i) => (
             <div key={i} className="bg-cream rounded-xl p-3 text-center">
               <p className="font-display font-black text-xl text-ink">
@@ -161,26 +204,29 @@ export default function ProfilPage() {
       >
         <Link
           href="/virgo"
-          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors"
+          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors flex items-center gap-2"
         >
+          <span className="icon icon--sm text-ink">auto_awesome</span>
           <span className="font-display font-bold text-sm text-ink">
             Halaman Virgo
           </span>
         </Link>
         <Link
           href="/faq"
-          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors"
+          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors flex items-center gap-2"
         >
+          <span className="icon icon--sm text-ink">help_outline</span>
           <span className="font-display font-bold text-sm text-ink">
-            ❓ FAQ
+            FAQ
           </span>
         </Link>
         <Link
           href="/deck-lawanku"
-          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors"
+          className="block bg-white rounded-2xl p-4 shadow-sm border border-cream-dark hover:bg-cream transition-colors flex items-center gap-2"
         >
+          <span className="icon icon--sm text-ink">style</span>
           <span className="font-display font-bold text-sm text-ink">
-            🃏 Deck Lawan
+            Deck Lawan
           </span>
         </Link>
       </motion.div>
@@ -192,7 +238,7 @@ export default function ProfilPage() {
         transition={{ delay: 0.5 }}
         className="pb-8"
       >
-        <button className="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border-2 border-uno-red/20 text-uno-red font-display font-bold text-sm hover:bg-uno-red/5 transition-colors">
+        <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border-2 border-uno-red/20 text-uno-red font-display font-bold text-sm hover:bg-uno-red/5 transition-colors">
           <span className="icon text-uno-red" style={{ fontSize: '16px' }}>logout</span>
           Keluar
         </button>

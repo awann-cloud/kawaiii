@@ -135,7 +135,7 @@ export default function LoginPage() {
               </form>
 
               <p className="text-center font-body text-xs text-ink-muted mt-6">
-                Lupa password? Tanya yang bikin website ini 😉
+                Lupa password? Tanya yang bikin website ini
               </p>
             </div>
             <div className="bg-block-purple h-3" />
@@ -146,7 +146,7 @@ export default function LoginPage() {
             style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
             <motion.div initial={{ scale: 0 }} animate={isFlipping ? { scale: 1 } : { scale: 0 }}
               transition={{ delay: 0.4, type: "spring", stiffness: 200 }} className="text-center text-white p-8">
-              <span className="text-6xl mb-4 block">🎴</span>
+              <span className="icon text-white mb-4 block" style={{ fontSize: '48px' }}>check_circle</span>
               <h2 className="font-display font-black text-3xl mb-2">Kartu diterima!</h2>
               <p className="font-body text-white/80">Masuk ke meja UNO kamu…</p>
             </motion.div>

@@ -2,20 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-const stats = {
-  opponentPoints: 12,
-  loseThreshold: 50,
-  activeTargets: 5,
-  completedTargets: 3,
-  weeklyStreak: 2,
-};
-
-const activity = [
-  { id: 1, text: "Kamu nyelesaiin 'Minum 2L air per hari'", pts: "+2", time: "3 jam lalu", dot: "bg-uno-green" },
-  { id: 2, text: "Kamu centang langkah di 'Belajar TypeScript'", pts: null, time: "5 jam lalu", dot: "bg-uno-blue" },
-  { id: 3, text: "Kamu bikin kartu baru 'Lari 5K pertama'", pts: null, time: "Kemarin", dot: "bg-uno-red" },
-];
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 const fadeUp = (i: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -24,13 +12,70 @@ const fadeUp = (i: number) => ({
 });
 
 export default function MejaPage() {
+  const [stats, setStats] = useState({
+    opponentPoints: 0,
+    loseThreshold: 50,
+    activeTargets: 0,
+    completedTargets: 0,
+    weeklyStreak: 0,
+  });
+  const [activity, setActivity] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Fetch targets
+      const { data: targets } = await supabase
+        .from('targets')
+        .select('*')
+        .eq('user_id', user.id);
+
+      if (targets) {
+        let opponentPoints = 0;
+        let activeTargets = 0;
+        let completedTargets = 0;
+
+        targets.forEach(t => {
+          if (t.status === 'selesai') {
+            completedTargets++;
+            opponentPoints += t.weight;
+          } else {
+            activeTargets++;
+          }
+        });
+
+        setStats(prev => ({
+          ...prev,
+          opponentPoints,
+          activeTargets,
+          completedTargets
+        }));
+
+        // Build some basic activity from targets
+        const sortedTargets = [...targets].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 3);
+        const mappedActivity = sortedTargets.map(t => ({
+          id: t.id,
+          text: t.status === 'selesai' ? `Kamu selesaiin '${t.title}'` : `Kamu bikin kartu '${t.title}'`,
+          pts: t.status === 'selesai' ? `+${t.weight}` : null,
+          time: new Date(t.created_at).toLocaleDateString('id-ID'),
+          dot: t.status === 'selesai' ? "bg-uno-green" : "bg-uno-red"
+        }));
+        setActivity(mappedActivity);
+      }
+    }
+    fetchData();
+  }, []);
+
   const pct = (stats.opponentPoints / stats.loseThreshold) * 100;
 
   return (
     <div className="space-y-6">
       {/* Greeting */}
       <motion.div {...fadeUp(0)}>
-        <h1 className="font-display font-black text-3xl text-ink mb-1">Meja UNO 🃏</h1>
+        <h1 className="font-display font-black text-3xl text-ink mb-1">Meja UNO</h1>
         <p className="font-body text-ink-muted text-sm">Ini ringkasan permainan kamu hari ini.</p>
       </motion.div>
 
@@ -52,7 +97,7 @@ export default function MejaPage() {
           </div>
           <div className="flex items-center justify-between">
             <span className="font-body text-xs text-white/60">{stats.opponentPoints} / {stats.loseThreshold} menuju kekalahan</span>
-            <span className="font-display font-bold text-xs text-uno-yellow">{Math.round(pct)}%</span>
+            <span className="font-display font-bold text-xs text-uno-yellow">{Math.min(100, Math.round(pct))}%</span>
           </div>
         </div>
       </motion.div>
@@ -100,8 +145,7 @@ export default function MejaPage() {
           </div>
 
           <div className="flex flex-col items-center gap-1">
-            <motion.div animate={{ rotate: [0,10,-10,0] }} transition={{ duration:2, repeat:Infinity }} className="text-2xl">⚡</motion.div>
-            <span className="font-display font-black text-xs text-ink-muted">VS</span>
+            <span className="font-display font-black text-lg text-ink-muted">VS</span>
           </div>
 
           {/* My deck */}
@@ -133,7 +177,7 @@ export default function MejaPage() {
           </Link>
         </div>
         <div className="space-y-3">
-          {activity.map((a, i) => (
+          {activity.length > 0 ? activity.map((a, i) => (
             <motion.div key={a.id} initial={{ opacity:0, x:-10 }} animate={{ opacity:1, x:0 }}
               transition={{ delay: 0.8+i*0.1 }} className="flex items-start gap-3">
               <div className={`w-2 h-2 ${a.dot} rounded-full mt-2 shrink-0`} />
@@ -145,7 +189,9 @@ export default function MejaPage() {
                 <p className="font-body text-xs text-ink-muted mt-0.5">{a.time}</p>
               </div>
             </motion.div>
-          ))}
+          )) : (
+            <p className="font-body text-sm text-ink-muted text-center py-4">Belum ada aktivitas.</p>
+          )}
         </div>
       </motion.div>
 

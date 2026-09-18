@@ -163,9 +163,9 @@ function Countdown() {
       <div className="text-center">
         <motion.p className="font-display font-black text-5xl md:text-7xl text-block-purple mb-2"
           animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity }}>
-          🎂 HARI INI! 🎂
+          HARI INI!
         </motion.p>
-        <p className="font-body text-ink-muted text-lg">Selamat ulang tahun, Kak Wai!</p>
+        <p className="font-body text-ink-muted text-lg">Selamat ulang tahun, Kawaii!</p>
       </div>
     );
   }
@@ -176,7 +176,7 @@ function Countdown() {
         <>
           <motion.p className="font-display font-black text-5xl md:text-7xl text-block-orange mb-2"
             animate={{ scale: [1, 1.03, 1] }} transition={{ duration: 2, repeat: Infinity }}>
-            BESOK! 🎉
+            BESOK!
           </motion.p>
           <p className="font-body text-ink-muted text-lg">Tinggal {hrs} jam lagi…</p>
         </>
@@ -337,7 +337,7 @@ export default function LandingPage() {
                 {[
                   { icon: "edit_note", text: "Tulis target kamu" },
                   { icon: "bolt", text: "Selesaiin langkahnya" },
-                  { icon: "celebration", text: "Teriak UNO! 🎉" },
+                  { icon: "celebration", text: "Teriak UNO!" },
                 ].map((s, i) => (
                   <motion.div key={i} className="bg-white/10 rounded-2xl p-4 text-center" whileHover={{ scale: 1.05 }}>
                     <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-2">
@@ -352,7 +352,7 @@ export default function LandingPage() {
 
           <FadeIn delay={0.4}>
             <div className="mt-8 flex items-start gap-3 bg-white/10 rounded-2xl p-5 border border-white/10">
-              <span className="text-2xl">🤫</span>
+              <span className="icon text-2xl text-white">campaign</span>
               <p className="font-body text-sm text-white/80 leading-relaxed">
                 <strong className="text-white">Spoiler:</strong> Aku emang pengen kalah. Setiap kartu plus di deck aku artinya kamu udah semakin dekat sama target kamu. Jadi… cepetan kalahin aku ya, Kak.
               </p>
@@ -468,15 +468,15 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <FadeIn delay={0.2}>
               <motion.div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/10" whileHover={{ scale: 1.03, rotate: -1 }} transition={{ type: "spring", stiffness: 300 }}>
-                <div className="w-16 h-16 bg-block-purple rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg">👑</div>
+                <div className="w-16 h-16 bg-block-purple rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg"><span className="icon text-white" style={{ fontSize: '32px' }}>workspace_premium</span></div>
                 <h4 className="font-display font-bold text-xl text-white mb-1">Kak Wai</h4>
-                <p className="font-body text-sm text-white/50 mb-3">Pemain Utama · ♍</p>
+                <p className="font-body text-sm text-white/50 mb-3">Pemain Utama · Virgo</p>
                 <p className="font-body text-sm text-white/80 leading-relaxed">Yang nulis target, centang langkah, dan teriak UNO. Semua kartu ada di tangan kamu.</p>
               </motion.div>
             </FadeIn>
             <FadeIn delay={0.3}>
               <motion.div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/10" whileHover={{ scale: 1.03, rotate: 1 }} transition={{ type: "spring", stiffness: 300 }}>
-                <div className="w-16 h-16 bg-uno-red rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg">🃏</div>
+                <div className="w-16 h-16 bg-uno-red rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-lg"><span className="icon text-white" style={{ fontSize: '32px' }}>smart_toy</span></div>
                 <h4 className="font-display font-bold text-xl text-white mb-1">Aku</h4>
                 <p className="font-body text-sm text-white/50 mb-3">Lawan · Yang Pengen Kalah</p>
                 <p className="font-body text-sm text-white/80 leading-relaxed">Yang nampung semua kartu plus kamu. Semakin banyak poin di deck aku, semakin kamu menang.</p>
@@ -499,7 +499,7 @@ export default function LandingPage() {
             </div>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-8 font-body text-sm text-ink-muted">Made with ❤️ for Kawaii</p>
+            <p className="mt-8 font-body text-sm text-ink-muted">Made with love for Kawaii</p>
           </FadeIn>
         </div>
       </section>

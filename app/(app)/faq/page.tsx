@@ -60,7 +60,7 @@ export default function FaqPage() {
         animate={{ opacity: 1, y: 0 }}
       >
         <h1 className="font-display font-black text-3xl text-ink mb-1">
-          FAQ ❓
+          FAQ
         </h1>
         <p className="font-body text-ink-muted text-sm">
           Pertanyaan yang (mungkin) ada di kepala Kawaii.
