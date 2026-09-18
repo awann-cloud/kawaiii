@@ -32,7 +32,11 @@ export default function DeckLawankuPage() {
 
       if (data && !error) {
         setTransfers(data);
-        const pts = data.reduce((sum, t) => sum + (t.targets?.weight || 0), 0);
+        const pts = data.reduce((sum, t) => {
+          const target: any = t.targets;
+          const w = Array.isArray(target) ? target[0]?.weight : target?.weight;
+          return sum + (w || 0);
+        }, 0);
         setTotalPoints(pts);
       }
       setIsLoading(false);
@@ -122,12 +126,12 @@ export default function DeckLawankuPage() {
                 >
                   <div className="w-12 h-16 bg-uno-red rounded-lg shadow-sm flex items-center justify-center shrink-0">
                     <span className="font-display font-black text-white text-lg">
-                      +{t.targets?.weight}
+                      +{(Array.isArray(t.targets) ? (t.targets as any[])[0]?.weight : (t.targets as any)?.weight)}
                     </span>
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-ink mb-1">
-                      {t.targets?.title}
+                      {Array.isArray(t.targets) ? (t.targets as any[])[0]?.title : (t.targets as any)?.title}
                     </h4>
                     <p className="font-body text-xs text-ink-muted mb-2">
                       {new Date(t.created_at).toLocaleDateString('id-ID')}
