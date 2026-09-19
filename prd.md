@@ -5,14 +5,14 @@
 Versi: 1.0
 Tanggal: 2026
 Pemilik Produk: Lo (pacar / orang yang bikin kado)
-Target Rilis: Sebelum 19 September
+Target Rilis: Sebelum 22 September
 Platform: Web mobile first (bisa diinstal sebagai PWA)
 
 ---
 
 ## 1. Ringkasan Produk
 
-UNO Deck adalah website personal yang cuma bisa diakses oleh satu orang, yaitu dia, yang ulang tahun tanggal 19 September 2004 dan berzodiak Virgo. Website ini berfungsi sebagai tiga hal sekaligus. Pertama, sebagai kado digital yang bisa dibuka berkali kali. Kedua, sebagai papan target dan harapan pribadi dia. Ketiga, sebagai permainan UNO antara dia dan lo, di mana dia menang kalau dia berhasil menyelesaikan targetnya, dan lo kalah kalau kartu plus di tangan lo sudah menumpuk.
+UNO Deck adalah website personal yang cuma bisa diakses oleh satu orang, yaitu dia, yang ulang tahun tanggal 22 September 2004 dan berzodiak Virgo. Website ini berfungsi sebagai tiga hal sekaligus. Pertama, sebagai kado digital yang bisa dibuka berkali kali. Kedua, sebagai papan target dan harapan pribadi dia. Ketiga, sebagai permainan UNO antara dia dan lo, di mana dia menang kalau dia berhasil menyelesaikan targetnya, dan lo kalah kalau kartu plus di tangan lo sudah menumpuk.
 
 Konsep intinya begini. Setiap target yang dia tulis adalah satu kartu UNO. Target yang dia anggap ringan bernilai +2. Target yang dia anggap besar dan berat bernilai +4. Setiap kali dia menyelesaikan target, kartu itu berpindah dari deck dia ke deck lo. Semakin banyak kartu plus di deck lo, semakin dekat lo ke kekalahan. Jadi lo memang lawan, tapi lo adalah lawan yang pengen kalah.
 
@@ -40,7 +40,7 @@ Indikator keberhasilan yang bisa diukur adalah jumlah kartu yang dibuat dalam bu
 
 ## 4. Persona Pengguna
 
-Pengguna utama adalah dia, perempuan, lahir 19 September 2004, Virgo, suka hal yang rapi dan bermakna, suka kejutan yang personal, aktif di mobile, tidak suka tampilan yang ramai dan bertele tele.
+Pengguna utama adalah dia, perempuan, lahir 22 September 2004, Virgo, suka hal yang rapi dan bermakna, suka kejutan yang personal, aktif di mobile, tidak suka tampilan yang ramai dan bertele tele.
 
 Pengguna kedua adalah lo, sebagai lawan dan admin. Lo bisa login untuk melihat deck lo sendiri, melihat kartu yang sudah dia kirim, dan menambahkan pesan atau hadiah kecil di tiap kartu yang masuk.
 

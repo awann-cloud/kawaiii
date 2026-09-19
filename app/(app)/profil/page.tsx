@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 export default function ProfilPage() {
   const [soundOn, setSoundOn] = useState(true);
   const [notifOn, setNotifOn] = useState(true);
-  
+
   const [stats, setStats] = useState({
     dibuat: 0,
     selesai: 0,
@@ -18,7 +18,7 @@ export default function ProfilPage() {
 
   // Countdown to next birthday
   const now = new Date();
-  const birthday = new Date(now.getFullYear(), 8, 19);
+  const birthday = new Date(now.getFullYear(), 8, 22);
   if (now > birthday) birthday.setFullYear(birthday.getFullYear() + 1);
   const diffDays = Math.max(
     0,
@@ -87,7 +87,7 @@ export default function ProfilPage() {
         </motion.div>
         <h2 className="font-display font-bold text-xl text-ink">Duwai</h2>
         <p className="font-body text-sm text-ink-muted">
-          Virgo · 19 September 2004
+          Virgo · 22 September 2004
         </p>
 
         {/* Countdown */}
@@ -156,9 +156,8 @@ export default function ProfilPage() {
               <span className="font-body text-sm text-ink">Suara</span>
             </div>
             <div
-              className={`w-10 h-6 rounded-full transition-colors ${
-                soundOn ? "bg-block-purple" : "bg-ink-muted/30"
-              } flex items-center p-0.5`}
+              className={`w-10 h-6 rounded-full transition-colors ${soundOn ? "bg-block-purple" : "bg-ink-muted/30"
+                } flex items-center p-0.5`}
             >
               <motion.div
                 className="w-5 h-5 bg-white rounded-full shadow-sm"
@@ -181,9 +180,8 @@ export default function ProfilPage() {
               <span className="font-body text-sm text-ink">Notifikasi</span>
             </div>
             <div
-              className={`w-10 h-6 rounded-full transition-colors ${
-                notifOn ? "bg-block-purple" : "bg-ink-muted/30"
-              } flex items-center p-0.5`}
+              className={`w-10 h-6 rounded-full transition-colors ${notifOn ? "bg-block-purple" : "bg-ink-muted/30"
+                } flex items-center p-0.5`}
             >
               <motion.div
                 className="w-5 h-5 bg-white rounded-full shadow-sm"

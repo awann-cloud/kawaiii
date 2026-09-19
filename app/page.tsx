@@ -60,15 +60,15 @@ function Doodles({ variant = "light" }: { variant?: "light" | "dark" }) {
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id={`d-${variant}`} x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
-            <path d="M20 10L22 16H28L23 20L25 26L20 22L15 26L17 20L12 16H18Z" fill="none" stroke={c} strokeWidth="1.5"/>
-            <circle cx="70" cy="30" r="8" fill="none" stroke={c} strokeWidth="1.5"/>
-            <path d="M90 70L95 60L100 70L105 60L110 70" fill="none" stroke={c} strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M30 80C30 75 40 70 40 80C40 70 50 75 50 80C50 90 40 95 40 100C40 95 30 90 30 80Z" fill="none" stroke={c} strokeWidth="1.2"/>
-            <circle cx="55" cy="65" r="2" fill={c}/><circle cx="15" cy="55" r="2" fill={c}/>
-            <path d="M60 95V105M55 100H65" stroke={c} strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M20 10L22 16H28L23 20L25 26L20 22L15 26L17 20L12 16H18Z" fill="none" stroke={c} strokeWidth="1.5" />
+            <circle cx="70" cy="30" r="8" fill="none" stroke={c} strokeWidth="1.5" />
+            <path d="M90 70L95 60L100 70L105 60L110 70" fill="none" stroke={c} strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M30 80C30 75 40 70 40 80C40 70 50 75 50 80C50 90 40 95 40 100C40 95 30 90 30 80Z" fill="none" stroke={c} strokeWidth="1.2" />
+            <circle cx="55" cy="65" r="2" fill={c} /><circle cx="15" cy="55" r="2" fill={c} />
+            <path d="M60 95V105M55 100H65" stroke={c} strokeWidth="1.5" strokeLinecap="round" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill={`url(#d-${variant})`}/>
+        <rect width="100%" height="100%" fill={`url(#d-${variant})`} />
       </svg>
     </div>
   );
@@ -137,9 +137,9 @@ function PhoneMockup() {
             </div>
           </div>
           <div className="flex gap-1.5 justify-center mt-auto mb-2">
-            {["bg-uno-red","bg-uno-blue","bg-uno-green","bg-uno-yellow"].map((bg,i)=>(
+            {["bg-uno-red", "bg-uno-blue", "bg-uno-green", "bg-uno-yellow"].map((bg, i) => (
               <div key={i} className={`w-9 h-13 ${bg} rounded-lg shadow-sm flex items-center justify-center`}>
-                <span className={`${bg==="bg-uno-yellow"?"text-ink":"text-white"} text-[8px] font-bold`}>{i%2===0?"+2":"+4"}</span>
+                <span className={`${bg === "bg-uno-yellow" ? "text-ink" : "text-white"} text-[8px] font-bold`}>{i % 2 === 0 ? "+2" : "+4"}</span>
               </div>
             ))}
           </div>
@@ -152,7 +152,7 @@ function PhoneMockup() {
 /* ===== Countdown ===== */
 function Countdown() {
   const now = new Date();
-  const bd = new Date(now.getFullYear(), 8, 19);
+  const bd = new Date(now.getFullYear(), 8, 22);
   if (now > bd) bd.setFullYear(bd.getFullYear() + 1);
   const diff = bd.getTime() - now.getTime();
   const days = Math.max(0, Math.floor(diff / 86400000));
@@ -183,7 +183,7 @@ function Countdown() {
       ) : (
         <>
           <p className="font-display font-black text-6xl md:text-8xl text-ink mb-2">{days}</p>
-          <p className="font-body text-ink-muted text-lg">hari menuju 19 September</p>
+          <p className="font-body text-ink-muted text-lg">hari menuju 22 September</p>
         </>
       )}
     </div>
