@@ -194,6 +194,17 @@ function Countdown() {
   );
 }
 
+/* ===== Custom Sparkle Icon ===== */
+function CustomSparkle({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M12 2C12 7.523 16.477 12 22 12C16.477 12 12 16.477 12 22C12 16.477 7.523 12 2 12C7.523 12 12 7.523 12 2Z" fill="currentColor" />
+      <path d="M19 4C19 5.657 20.343 7 22 7C20.343 7 19 8.343 19 10C19 8.343 17.657 7 16 7C17.657 7 19 5.657 19 4Z" fill="currentColor" />
+      <path d="M6 5C6 6.105 6.895 7 8 7C6.895 7 6 7.895 6 9C6 7.895 5.105 7 4 7C5.105 7 6 6.105 6 5Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 /* ============================================================ */
 /*  LANDING PAGE                                                */
 /* ============================================================ */
@@ -210,7 +221,7 @@ export default function LandingPage() {
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <FadeIn>
             <div className="inline-flex items-center gap-2 badge bg-block-purple/10 text-block-purple mb-6">
-              <Icon name="auto_awesome" size="sm" />
+              <CustomSparkle className="w-4 h-4 shrink-0" />
               <span>Kado Digital Buat Kamu</span>
             </div>
           </FadeIn>
