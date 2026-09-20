@@ -152,11 +152,15 @@ function PhoneMockup() {
 /* ===== Countdown ===== */
 function Countdown() {
   const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const bd = new Date(now.getFullYear(), 8, 22);
-  if (now > bd) bd.setFullYear(bd.getFullYear() + 1);
-  const diff = bd.getTime() - now.getTime();
-  const days = Math.max(0, Math.floor(diff / 86400000));
-  const hrs = Math.max(0, Math.floor((diff % 86400000) / 3600000));
+  if (today.getTime() > bd.getTime()) bd.setFullYear(bd.getFullYear() + 1);
+  
+  const diffDays = Math.round((bd.getTime() - today.getTime()) / 86400000);
+  const diffTime = bd.getTime() - now.getTime();
+  
+  const days = Math.max(0, diffDays);
+  const hrs = Math.max(0, Math.floor(diffTime / 3600000));
 
   if (days === 0) {
     return (

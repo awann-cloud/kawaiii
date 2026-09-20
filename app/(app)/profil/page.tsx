@@ -18,11 +18,12 @@ export default function ProfilPage() {
 
   // Countdown to next birthday
   const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const birthday = new Date(now.getFullYear(), 8, 22);
-  if (now > birthday) birthday.setFullYear(birthday.getFullYear() + 1);
+  if (today.getTime() > birthday.getTime()) birthday.setFullYear(birthday.getFullYear() + 1);
   const diffDays = Math.max(
     0,
-    Math.ceil((birthday.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+    Math.round((birthday.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
   );
 
   useEffect(() => {
