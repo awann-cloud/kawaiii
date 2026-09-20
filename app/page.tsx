@@ -155,10 +155,10 @@ function Countdown() {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const bd = new Date(now.getFullYear(), 8, 22);
   if (today.getTime() > bd.getTime()) bd.setFullYear(bd.getFullYear() + 1);
-  
+
   const diffDays = Math.round((bd.getTime() - today.getTime()) / 86400000);
   const diffTime = bd.getTime() - now.getTime();
-  
+
   const days = Math.max(0, diffDays);
   const hrs = Math.max(0, Math.floor(diffTime / 3600000));
 
@@ -503,7 +503,7 @@ export default function LandingPage() {
             </div>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-8 font-body text-sm text-ink-muted">Made with love for Kawaii</p>
+            <p className="mt-8 font-body text-sm text-ink-muted">semuaaa kawaii dirayakann</p>
           </FadeIn>
         </div>
       </section>
