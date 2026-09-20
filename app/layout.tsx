@@ -17,13 +17,13 @@ const bodyFont = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "UNO Deck — Deck kamu udah siap.",
+  title: "UNO Deck",
   description:
     "Tulis target kamu. Aku yang bakal kalah. Kado digital yang bisa dibuka berkali-kali.",
   keywords: ["UNO", "birthday", "goals", "personal", "card game"],
   authors: [{ name: "UNO Deck" }],
   openGraph: {
-    title: "UNO Deck — Deck kamu udah siap.",
+    title: "UNO Deck",
     description: "Tulis target kamu. Aku yang bakal kalah.",
     type: "website",
   },
